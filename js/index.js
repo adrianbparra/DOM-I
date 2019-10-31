@@ -52,6 +52,10 @@ links.forEach((link,index) => {
   let navArr = Object.values(siteContent["nav"]);
   link.textContent = navArr[index];
   link.style.color = "green";
+
+  
+  link.onmouseover = function(){link.style.color = "red"};
+  link.onmouseout = function(){link.style.color = "green"}
 })
 
 ////////////ADDING A NEW NAV A ////////////
@@ -66,7 +70,7 @@ getStarted.href = "#";
 getStarted.textContent = "Get Started"
 document.querySelector("nav").appendChild(getStarted);
 
-console.log(links, "links");
+// console.log(links, "links");
 
 ///////////CTA//////////////
 
@@ -76,9 +80,27 @@ const cta = document.querySelector(".cta-text");
 cta.querySelector("h1").textContent = siteContent["cta"]["h1"];
 cta.querySelector("button").textContent = siteContent["cta"]["button"];
 
+////////////////BUTTON ONCLICK EVENT//////////////////
+const button = cta.querySelector("button");
+
+// console.log("Button: ",button);
+
+button.addEventListener("click", textchange);
+
+function textchange(){
+  if(cta.querySelector("h1").textContent == siteContent["cta"]["h1"]){
+    cta.querySelector("h1").textContent = "This is why it's Awesome";
+  } else {
+    cta.querySelector("h1").textContent = siteContent["cta"]["h1"];
+  }
+}
+
+
 let ctaImg = document.querySelector(".cta img");
 ctaImg.setAttribute("src", siteContent["cta"]["img-src"]);
 //console.log(ctaImg);
+
+
 
 ///////MAIN CONTENT/////
 
@@ -114,7 +136,7 @@ contactAddress[0].textContent = siteContent["contact"]["address"];
 contactAddress[1].textContent = siteContent["contact"]["phone"];
 contactAddress[2].textContent = siteContent["contact"]["email"]
 
-console.log(contactTitle);
+// console.log(contactTitle);
 
 ///////////FOOTER////////////
 const footer = document.querySelector("footer");
